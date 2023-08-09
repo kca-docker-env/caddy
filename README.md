@@ -47,9 +47,16 @@ docker-compose -f base-env.yml --detatch
 ```
 
 * docker-compose: Use defined alias to run container specified by compose file
-* -f <file>:
+* -f filename: Use this file as compose-file
+* --detach: Run container in background
 
 ### Reverse Proxy
 
 As a reverse proxy the [Caddy-Proxy-Manager](https://github.com/lucaslorentz/caddy-docker-proxy) is used.
 
+New proxies are defiend by docker labels.
+
+```compose
+-labels
+  caddy
+```
