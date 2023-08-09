@@ -33,11 +33,23 @@ The base environment should contain:
 
 ## Introduction
 
-The base environmet consists of several container. These container environment is defined by the base-env.yml file.
+The base environmet consists of several container. This requires a network called caddy and must be created before the compose could be started.
 
+```bash
+docker create network caddy
+```
 
+After the network has been created, the Compose file can be executed.
+To do this, the command must be executed in the folder where the *.yml file is located, or the path in the command must be adjusted.
 
-## Reverse Proxy
+```bash
+docker-compose -f base-env.yml --detatch
+```
+
+* docker-compose: Use defined alias to run container specified by compose file
+* -f <file>:
+
+### Reverse Proxy
 
 As a reverse proxy the [Caddy-Proxy-Manager](https://github.com/lucaslorentz/caddy-docker-proxy) is used.
 
