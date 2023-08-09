@@ -57,6 +57,9 @@ As a reverse proxy the [Caddy-Proxy-Manager](https://github.com/lucaslorentz/cad
 New proxies are defiend by docker labels.
 
 ```compose
--labels
-  caddy
+    networks: 
+       - caddy 
+     labels: 
+       caddy: example.domain
+       caddy.reverse_proxy: "{{upstreams 80}}"
 ```
