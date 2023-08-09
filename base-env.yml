@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  caddy:
+    container_name: proxy
+    image: lucaslorentz/caddy-docker-proxy:ci-alpine
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - CADDY_INGRESS_NETWORKS=caddy
+    networks:
+      - caddy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - caddy_data:/data
+    restart: unless-stopped
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    ports:
+      - 9443:9443
+      volumes:
+        - portainer_data:/data
+        - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped    
+    networks:
+      - caddy
+    labels:
+      caddy: portainer.local
+      caddy.reverse_proxy: "{{upstreams 9443}}"
+
+networks:
+  caddy:
+    external: true
+
+volumes:
+  caddy_data: {}
+  portainer_data: {}
