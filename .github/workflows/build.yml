@@ -36,16 +36,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Create IPK
-        run: docker create --name ipk-builder --rm -e SOURCE=/build -v ${{ github.workspace }}/ipk-sources:/build -e DEST=/output -v ${{ github.workspace }}:/output wagoautomation/ipk-builder:latest docker-env.ipk 
-      #  uses: docker://wagoautomation/ipk-builder:latest
-      #  env:
-      #    SOURCE: /build
-      #    DEST: /output
-      #  volumes:
-      #      ${{ github.workspace }}/ipk-sources:/build
-      #      ${{ github.workspace }}:/output
-      #  with:
-      #    args: docker-env.ipk
+        run: |
+          mkdir -p ${{ github.workspace }}/ipk-builds
+          docker create --name ipk-builder --rm -e SOURCE=/build -v ${{ github.workspace }}/ipk-sources:/build -e DEST=/output -v ${{ github.workspace }}/ipk-builds:/output wagoautomation/ipk-builder:latest docker-env.ipk 
 
       # Upload IPK as artifact
       - name: Archive code coverage results
