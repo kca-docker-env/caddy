@@ -43,12 +43,12 @@ After the network has been created, the Compose file can be executed.
 To do this, the command must be executed in the folder where the *.yml file is located, or the path in the command must be adjusted.
 
 ```bash
-docker-compose -f base-env.yml --detatch
+docker-compose -f base-env.yml --detach
 ```
 
-* docker-compose: Use defined alias to run container specified by compose file
-* -f filename: Use this file as compose-file
-* --detach: Run container in background
+> **docker-compose**: Use defined alias to run container specified by compose file <br>
+> **-f filename**: Use this file as compose-file <br>
+> **--detach**: Run container in background
 
 ### Reverse Proxy
 
@@ -57,9 +57,12 @@ As a reverse proxy the [Caddy-Proxy-Manager](https://github.com/lucaslorentz/cad
 New proxies are defiend by docker labels.
 
 ```compose
-    networks: 
-       - caddy 
-     labels: 
-       caddy: example.domain
-       caddy.reverse_proxy: "{{upstreams 80}}"
+    networks:
+      - caddy 
+    labels: 
+      caddy: example.domain
+      caddy.reverse_proxy: "{{upstreams 80}}"
 ```
+
+> **{{ upstream }}** is resolved to the IP address of the container. <br>
+> Therefore, the container internal **port** must also be used!
