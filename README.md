@@ -66,3 +66,9 @@ New proxies are defiend by docker labels.
 
 > **{{ upstream }}** is resolved to the IP address of the container. <br>
 > Therefore, the container internal **port** must also be used!
+
+
+### Container management
+
+Container management is realized by [Portainer](https://docs.portainer.io/start/install-ce/server/docker/linux) in the Community Edition.
+You can find more information [here](https://docs.portainer.io/).
