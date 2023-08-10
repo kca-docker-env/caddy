@@ -21,16 +21,16 @@ jobs:
     runs-on: ubuntu-latest
 
     # Define container image to create IPK
-    container:
-      image: wagoautomation/ipk-builder
-      env:
-        SOURCE: /build
-        DEST: /output
-      volumes:
-        - ${GITHUB_WORKSPACE}/ipk-sources:/build
-        - $(GITHUB_WORKSPACE}:/output
-      with:
-        args: docker-env.ipk
+    #container:
+    #  image: wagoautomation/ipk-builder
+    #  env:
+    #    SOURCE: /build
+    #    DEST: /output
+    #  volumes:
+    #    - ${GITHUB_WORKSPACE}/ipk-sources:/build
+    #    - $(GITHUB_WORKSPACE}:/output
+    #  with:
+    #    args: docker-env.ipk
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
