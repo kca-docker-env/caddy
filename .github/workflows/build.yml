@@ -21,20 +21,31 @@ jobs:
     runs-on: ubuntu-latest
 
     # Define container image to create IPK
-    container:
-      image: node:14.16
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-      volumes:
-        - my_docker_volume:/volume_mount
-      args: docker-env.ipk
+    #container:
+    #  image: wagoautomation/ipk-builder
+    #  env:
+    #    SOURCE: /build
+    #    DEST: /output
+    #  volumes:
+    #    - ${GITHUB_WORKSPACE}/ipk-sources:/build
+    #    - $(GITHUB_WORKSPACE}:/output
+    #  args: docker-env.ipk
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v3
+
+      - name: Create IPK
+           uses: docker://wagoautomation/ipk-builder:latest
+           env:
+             SOURCE: /build
+             DEST: /output
+           volumes:
+             - ${GITHUB_WORKSPACE}/ipk-sources:/build
+             - $(GITHUB_WORKSPACE}:/output
+           with:
+             args: docker-env.ipk
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
