@@ -35,8 +35,8 @@ jobs:
       - name: Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
         uses: actions/checkout@v3
 
-      - name: Create IPK
-        run: docker run --name ipk-builder --rm -e SOURCE=/build -v ${{ github.workspace }}/ipk-sources:/build -e DEST=/output -v ${{ github.workspace }}:/output docker://wagoautomation/ipk-builder:latest docker-env.ipk 
+      #- name: Create IPK
+      #  run: docker run --name ipk-builder --rm -e SOURCE=/build -v ${{ github.workspace }}/ipk-sources:/build -e DEST=/output -v ${{ github.workspace }}:/output docker://wagoautomation/ipk-builder:latest docker-env.ipk 
       #  uses: docker://wagoautomation/ipk-builder:latest
       #  env:
       #    SOURCE: /build
