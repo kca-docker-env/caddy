@@ -1,0 +1,8 @@
+Package: docker-env
+Version: 0.0.1
+Priority: optional
+Depends: lighttpd
+Section: net
+Architecture: all
+Maintainer: BKhenloo <github.com/kca-docker-env/base>
+Description: Create a base docker environment at wago controller (e.g. 752-8303 or 750-821x)
