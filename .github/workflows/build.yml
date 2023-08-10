@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: docker-env.ipk
-          path: docker-env.ipk
+          path: ${{ github.workspace }}/docker-env.ipk
 
       # Runs a single command using the runners shell
       #- name: Run a one-line script
